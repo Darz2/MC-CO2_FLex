@@ -1,0 +1,19 @@
+#!/bin/bash
+#SBATCH -J flex
+#SBATCH -o %j.out
+#SBATCH -n 1
+#SBATCH -p serial
+#SBATCH -t 5-00:00:00
+#SBATCH -x c[156,157,166-169,171,172]
+#SBATCH --mail-type=BEGIN,END
+#SBATCH --mail-user=d.raju@tudelft.nl
+
+
+scontrol show hostnames "$SLURM_JOB_NODELIST" > hostfile
+STARTTIME=$(date +%Y-%m-%d%t%k:%M:%S:%N)
+ 
+ ./run -g -o
+
+
+ENDTIME=$(date +%Y-%m-%d%t%k:%M:%S:%N)
+echo -e "$SLURM_JOB_ID\t $SLURM_JOB_NAME\t $STARTTIME\t $ENDTIME" >> ./brick.out
